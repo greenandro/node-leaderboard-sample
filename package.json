@@ -1,0 +1,35 @@
+{
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hirowaki/node-leaderboard-sample.git"
+  },
+  "name": "node-leaderboard-sample",
+  "version": "1.0.0",
+  "description": "node-leaderboard sample.",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint index.js app.js app/"
+  },
+  "author": "hirowaki https://github.com/hirowaki",
+  "dependencies": {
+    "node-leaderboard": "*",
+    "bluebird": "*",
+    "redis": "~2.7.1"
+  },
+  "devDependencies": {
+    "mocha": "1.18.x",
+    "sinon": "*",
+    "eslint": "*",
+    "istanbul": "*",
+    "jsdoc": "*",
+    "ink-docstrap": "*",
+    "gh-pages": "*",
+    "express": "~4.15.3",
+    "ejs": "~2.5.6",
+    "body-parser": "~1.17.2"
+  },
+  "keywords": [
+    "leaderboard"
+  ]
+}
