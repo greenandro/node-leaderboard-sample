@@ -1,20 +1,18 @@
-"use strict";
+'use strict';
 
-// app.js for app.
-// Copyright (c) 2017 hirowaki https://github.com/hirowaki
-
-const express = require("express");
+const express = require('express');
+const booster = require('booster');
 const app = express();
-const path = require("path");
-const ejs = require("ejs");
+const db = require('./app/db');
+const bodyParser = require('body-parser');
+const path = require('path');
+const ejs = require('ejs');
+const controller = require('./app/controller');
+const service = require('./app/service/leaderboard');
 const Promise = require('bluebird');
 const redis = Promise.promisifyAll(require('redis'));
-const bodyParser = require('body-parser');
+const PORT = 8000;
 
-const controller = require('./app/controller');
-const service = require('./app/service');
-
-// using body parser.
 app.use(bodyParser.urlencoded({
     extended: true
 }));
@@ -24,10 +22,20 @@ app.use(bodyParser.json());
 app.set('views', path.join(__dirname, 'views'));
 
 // using ejs. I like it.
-app.engine('ejs',ejs.renderFile);
+app.engine('ejs', ejs.renderFile);
 
-// register controller.
-controller.register(app);
+booster.init({
+    db: db,
+    models: __dirname + '/app/models',
+    controllers: __dirname + '/app/controllers',
+    app: app
+});
+
+// endpoints.
+app.get('/', controller.index);
+app.post('/clear', controller.clear);
+app.get('/board', controller.board);
+booster.resource('player'); // player REST API.
 
 let redisCli = null;
 
@@ -36,13 +44,10 @@ function prepareRedis() {
     return new Promise((resolve, reject) => {
         redisCli = redis.createClient();
 
-        redisCli.on("ready", function () {
-            /* eslint-disable no-console */
-            console.log("redis client got ready to go!");
-            /* eslint-enable no-console */
+        redisCli.on('ready', function () {
             resolve();
         });
-        redisCli.on("error", function (err) {
+        redisCli.on('error', function (err) {
             reject(err);
         });
     });
@@ -56,10 +61,7 @@ function startListening() {
     // start listening.
     return new Promise((resolve, reject) => {
         try {
-            const server = app.listen(8080, function () {
-                /* eslint-disable no-console */
-                console.log("server is listening to PORT:" + server.address().port);
-                /* eslint-enable no-console */
+            app.listen(PORT, function () {
                 resolve();
             });
         }

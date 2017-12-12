@@ -4,10 +4,20 @@
     "sourceType": "module"
   },
   "rules": {
+    "no-console": 0,
+    "camelcase": ["error", { "properties": "never" }],
+    "brace-style": ["error", "stroustrup", { "allowSingleLine": false }],
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"]
   },
   "env": {
     "node": true,
-    "mocha": true
+    "mocha": true,
+    "browser": true
+  },
+  "globals": {
+    "Warmouth": true,
+    "getApp": true
   },
   "extends": "eslint:recommended"
 }

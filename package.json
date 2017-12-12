@@ -15,21 +15,18 @@
   "dependencies": {
     "node-leaderboard": "*",
     "bluebird": "*",
-    "redis": "~2.7.1"
+    "redis": "~2.7.1",
+    "express": "~4.15.3",
+    "booster": "*",
+    "searchjs": "*",
+    "ejs": "~2.5.6",
+    "body-parser": "~1.17.2"
   },
   "devDependencies": {
     "mocha": "1.18.x",
     "sinon": "*",
     "eslint": "*",
     "istanbul": "*",
-    "jsdoc": "*",
-    "ink-docstrap": "*",
-    "gh-pages": "*",
-    "express": "~4.15.3",
-    "ejs": "~2.5.6",
-    "body-parser": "~1.17.2"
-  },
-  "keywords": [
-    "leaderboard"
-  ]
+    "gh-pages": "*"
+  }
 }
