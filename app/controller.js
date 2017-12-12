@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 // Copyright (c) 2017 hirowaki https://github.com/hirowaki
 
@@ -7,10 +7,10 @@ const LeaderboardService = require('./service');
 class LeaderboardController {
     static register(app) {
         app.get('/', this.list);
-        app.post("/clear", this.clear);
-        app.post("/insert", this.insert);
-        app.post("/modify", this.modify);
-        app.post("/remove", this.remove);
+        app.post('/clear', this.clear);
+        app.post('/insert', this.insert);
+        app.post('/modify', this.modify);
+        app.post('/remove', this.remove);
     }
 
     static list(req, res) {
@@ -46,7 +46,7 @@ class LeaderboardController {
     }
 
     static remove(req, res) {
-        const name = req.body.name || "";
+        const name = req.body.name || '';
 
         return LeaderboardService.remove(name)
         .then(() => {
@@ -58,7 +58,7 @@ class LeaderboardController {
     }
 
     static modify(req, res) {
-        const name = req.body.name || "";
+        const name = req.body.name || '';
         const delta = +req.body.delta || 1;
 
         return LeaderboardService.modifyScore(name, delta)

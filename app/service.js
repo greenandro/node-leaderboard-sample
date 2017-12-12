@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 // Copyright (c) 2017 hirowaki https://github.com/hirowaki
 
@@ -9,7 +9,7 @@ const pageSize = 10;
 
 class LeaderboardService {
     static initialize(redis) {
-        return Leaderboard.create(redis, "lbTest")
+        return Leaderboard.create(redis, 'lbTest')
         .then((_lb) => {
             this._instance = _lb;
             this._nameSeed = 1;

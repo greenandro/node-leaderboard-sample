@@ -1,12 +1,12 @@
-"use strict";
+'use strict';
 
 // app.js for app.
 // Copyright (c) 2017 hirowaki https://github.com/hirowaki
 
-const express = require("express");
+const express = require('express');
 const app = express();
-const path = require("path");
-const ejs = require("ejs");
+const path = require('path');
+const ejs = require('ejs');
 const Promise = require('bluebird');
 const redis = Promise.promisifyAll(require('redis'));
 const bodyParser = require('body-parser');
@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 app.set('views', path.join(__dirname, 'views'));
 
 // using ejs. I like it.
-app.engine('ejs',ejs.renderFile);
+app.engine('ejs', ejs.renderFile);
 
 // register controller.
 controller.register(app);
@@ -36,13 +36,13 @@ function prepareRedis() {
     return new Promise((resolve, reject) => {
         redisCli = redis.createClient();
 
-        redisCli.on("ready", function () {
+        redisCli.on('ready', function () {
             /* eslint-disable no-console */
-            console.log("redis client got ready to go!");
+            console.log('redis client got ready to go!');
             /* eslint-enable no-console */
             resolve();
         });
-        redisCli.on("error", function (err) {
+        redisCli.on('error', function (err) {
             reject(err);
         });
     });
@@ -58,7 +58,7 @@ function startListening() {
         try {
             const server = app.listen(8080, function () {
                 /* eslint-disable no-console */
-                console.log("server is listening to PORT:" + server.address().port);
+                console.log('server is listening to PORT:' + server.address().port);
                 /* eslint-enable no-console */
                 resolve();
             });
